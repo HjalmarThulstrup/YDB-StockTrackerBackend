@@ -1,0 +1,16 @@
+/home/ralle/_REPOS/JWT/jwtBackend/src/main/java/exceptions/GenericExceptionMapper.java
+/home/ralle/_REPOS/JWT/jwtBackend/src/main/java/cors/CorsRequestFilter.java
+/home/ralle/_REPOS/JWT/jwtBackend/src/main/java/utils/SetupTestUsers.java
+/home/ralle/_REPOS/JWT/jwtBackend/src/main/java/entity/Role.java
+/home/ralle/_REPOS/JWT/jwtBackend/src/main/java/entity/UserFacade.java
+/home/ralle/_REPOS/JWT/jwtBackend/src/main/java/entity/User.java
+/home/ralle/_REPOS/JWT/jwtBackend/src/main/java/security/JWTAuthenticationFilter.java
+/home/ralle/_REPOS/JWT/jwtBackend/src/main/java/security/UserPrincipal.java
+/home/ralle/_REPOS/JWT/jwtBackend/src/main/java/rest/ApplicationConfig.java
+/home/ralle/_REPOS/JWT/jwtBackend/src/main/java/security/LoginEndpoint.java
+/home/ralle/_REPOS/JWT/jwtBackend/src/main/java/exceptions/NotFoundException.java
+/home/ralle/_REPOS/JWT/jwtBackend/src/main/java/rest/DemoResource.java
+/home/ralle/_REPOS/JWT/jwtBackend/src/main/java/exceptions/AuthenticationException.java
+/home/ralle/_REPOS/JWT/jwtBackend/src/main/java/security/SharedSecret.java
+/home/ralle/_REPOS/JWT/jwtBackend/src/main/java/cors/CorsResponseFilter.java
+/home/ralle/_REPOS/JWT/jwtBackend/src/main/java/security/JWTSecurityContext.java

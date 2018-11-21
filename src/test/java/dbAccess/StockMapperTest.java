@@ -27,7 +27,7 @@ public class StockMapperTest
     public void testAddStockToFavourites() throws Exception
     {
         System.out.println("Testing addStockToFavourites method of class StockMapper");
-        int userId = 0;
+        int userId = 1;
         String stockSymbol = "AMD";
         StockMapper instance = new StockMapper();
         boolean result = instance.addStockToFavourites(userId, stockSymbol);

@@ -8,7 +8,6 @@ package dbAccess;
 import java.sql.Connection;
 import java.sql.SQLException;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 import org.junit.Test;
 
 /**
@@ -34,11 +33,12 @@ public class DatabaseConnectorTest
         DatabaseConnector instance = new DatabaseConnector();
         
         try (Connection conn = instance.connection()) {
+            System.out.println(conn.getClientInfo());
             Boolean expResult = conn.isValid(15);
             assertTrue(expResult);
         }
         
-        fail("Test failed due to invalid connection");
+        //fail("Test failed due to invalid connection");
     }
     
 }

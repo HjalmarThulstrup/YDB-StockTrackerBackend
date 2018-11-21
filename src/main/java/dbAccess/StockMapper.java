@@ -29,10 +29,10 @@ public class StockMapper
     public boolean addStockToFavourites(int userId, String stockSymbol) throws SQLException, ClassNotFoundException
     {
         try (Connection conn = connector.connection()) {
-            String SQL = "INSERT INTO ...";
+            String SQL = "INSERT INTO Stocks (symbol, user) VALUES (?, ?)";
             PreparedStatement ps = conn.prepareStatement(SQL);
-            ps.setInt(1, userId);
-            ps.setString(2, stockSymbol);
+            ps.setString(1, stockSymbol);
+            ps.setInt(2, userId);
 
             ps.executeUpdate();
         } catch (SQLException | ClassNotFoundException exception) {

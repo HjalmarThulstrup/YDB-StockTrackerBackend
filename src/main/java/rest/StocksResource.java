@@ -38,6 +38,7 @@ public class StocksResource
 
     /**
      * Retrieves a stock from the IEX API
+     *
      * @param symbol
      * @return a response containing JSON or an error depending on context
      * @throws java.lang.InterruptedException
@@ -51,9 +52,11 @@ public class StocksResource
         StockFetcher sf = new StockFetcher();
         return sf.singleFetch(symbol);
     }
-    
+
     /**
-     * Retrieves an array of stocks from the IEX API. Query is formatted as "/stocks?batch=fb&batch=amzn&batch=amd" etc.
+     * Retrieves an array of stocks from the IEX API. Query is formatted as
+     * "/stocks?batch=fb&batch=amzn&batch=amd" etc.
+     *
      * @param symbols
      * @return a response containing JSON or an error depending on context
      * @throws java.lang.InterruptedException
@@ -65,5 +68,22 @@ public class StocksResource
     {
         StockFetcher sf = new StockFetcher();
         return sf.multiFetch(symbols);
+    }
+
+    /**
+     * Retrieves an array of stocks from the IEX API by their pre-defined lists.
+     *
+     * @param type what type of list you want. options are "gainers, losers, iexvolume, mostactive, infocus and iexpercent"
+     * @return a response containing JSON or an error depending on context
+     * @throws java.lang.InterruptedException
+     * @throws java.util.concurrent.ExecutionException
+     */
+    @GET
+    @Path("/{type}") //Gainers, losers
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getStockList(@PathParam("type") String type) throws InterruptedException, ExecutionException
+    {
+        StockFetcher sf = new StockFetcher();
+        return sf.listFetch(type);
     }
 }

@@ -62,8 +62,7 @@ public class StockFetcher
     }
 
     /**
-     * creates mini-batches of stock symbols and adds them to a pool for
-     * fetching.
+     * creates mini-batches of stock symbols and adds them to a pool for fetching.
      *
      * @param symbolList
      * @return a list of futures
@@ -73,12 +72,14 @@ public class StockFetcher
         List<Future> fetchFutures = new ArrayList();
         int originalSize = symbolList.size();
         int currentSize = originalSize;
-        while (!symbolList.isEmpty()) {
+        boolean batched = false;
+        while (!batched) {
             if (currentSize - 3 >= 0) {
                 String[] batchArr = {symbolList.remove(0), symbolList.remove(1), symbolList.remove(2)};
                 fetchFutures.add(pool.submit(new IEXStockBatchRequest(batchArr)));
             } else {
                 fetchFutures.add(pool.submit(new IEXStockBatchRequest(symbolList.toArray(new String[0]))));
+                batched = true;
             }
 
             currentSize = symbolList.size();
@@ -86,8 +87,27 @@ public class StockFetcher
         return fetchFutures;
     }
 
+    /**
+     * used to multithread the fetching of a single stock. Sort of pointless since there is only one fetch call.
+     * @param symbol
+     * @return a response containing a single stock
+     * @throws InterruptedException
+     * @throws ExecutionException 
+     */
     public Response singleFetch(String symbol) throws InterruptedException, ExecutionException
     {
         return (Response) pool.submit(new IEXSingleStockRequest(symbol)).get();
+    }
+
+    /**
+     * Fetches a list of stocks based on the IEX /list endpoint.
+     * @param type
+     * @return a response containing 10 stocks.
+     * @throws InterruptedException
+     * @throws ExecutionException 
+     */
+    public Response listFetch(String type) throws InterruptedException, ExecutionException
+    {
+        return (Response) pool.submit(new IEXStockListRequest(type)).get();
     }
 }

@@ -4,12 +4,16 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -35,6 +39,15 @@ public class User implements Serializable {
     @JoinColumn(name = "role_name", referencedColumnName = "role_name")})
   @ManyToMany
   private List<Role> roleList = new ArrayList();
+  
+
+  @Basic(optional = true)
+  @ElementCollection
+  @CollectionTable(
+        name="user_symbol",
+        joinColumns=@JoinColumn(name="user"))
+  @Column(name = "symbol")
+  private List<String> symbolList = new ArrayList<>();
 
   public List<String> getRolesAsStrings() {
     if (roleList.isEmpty()) {
@@ -60,6 +73,17 @@ public class User implements Serializable {
     String salt = BCrypt.gensalt();
     String hash = BCrypt.hashpw(userPass, salt);
     this.userPass = hash;
+  }
+  
+  public void addSymbol(String s) {
+      this.symbolList.add(s);
+  }
+  
+  public List<String> getSymbols() {
+      if(this.symbolList.isEmpty()) {
+          return null;
+      }
+      return this.symbolList;
   }
 
   public String getUserName() {

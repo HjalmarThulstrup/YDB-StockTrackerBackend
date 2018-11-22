@@ -37,6 +37,8 @@ public class TestDBSetup {
         System.out.println("addUser: test");
         User u = new User("test", "1234");
         System.out.println(u.toString());
+        u.addSymbol("test");
+        u.addSymbol("Hitachi");
         User result = null;
 
         try {
@@ -51,6 +53,7 @@ public class TestDBSetup {
             em.close();
         }
 
+        assertNotNull(result.getSymbols());
         assertNotNull(result);
         assertTrue(u.getUserName().equals("test"));
 

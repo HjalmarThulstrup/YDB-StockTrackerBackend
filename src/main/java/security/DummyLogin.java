@@ -1,8 +1,12 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package security;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jose.JWSAlgorithm;
 import com.nimbusds.jose.JWSHeader;
@@ -12,33 +16,35 @@ import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
 import entity.User;
 import entity.UserFacade;
+import exceptions.AuthenticationException;
+import exceptions.GenericExceptionMapper;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import exceptions.AuthenticationException;
-import exceptions.GenericExceptionMapper;
 
-@Path("login")
-public class LoginEndpoint {
+/**
+ *
+ * @author rlumh
+ */
+@Path("dummyLogin")
+public class DummyLogin {
+    public static final int TOKEN_EXPIRE_TIME = 1000 * 60 * 30; //30 min
 
-  public static final int TOKEN_EXPIRE_TIME = 1000 * 60 * 30; //30 min
-
-  @POST
+  @GET
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public Response login(String jsonString) throws AuthenticationException {
-
-    JsonObject json = new JsonParser().parse(jsonString).getAsJsonObject();
-    String username = json.get("username").getAsString();
-    String password = json.get("password").getAsString();
+      
+      String username = "test";
+      String password = "1234";
+      
 
     //Todo refactor into facade
     try {
@@ -66,7 +72,7 @@ public class LoginEndpoint {
       res.append(",");
     }
     String rolesAsString = res.length() > 0 ? res.substring(0, res.length() - 1) : "";
-    String issuer = "YDB";
+    String issuer = "semesterdemo_security_course";
 
     JWSSigner signer = new MACSigner(SharedSecret.getSharedKey());
     Date date = new Date();

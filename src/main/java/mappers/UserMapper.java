@@ -1,26 +1,20 @@
-package entity;
+package mappers;
 
+import entity.User;
+import exceptions.AuthenticationException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
-import exceptions.AuthenticationException;
 
-/**
- *
- * @author lam@cphbusiness.dk
- */
-public class UserFacade {
+public class UserMapper {
 
     //Default EntityManagerFactory
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu");
-    private static final UserFacade instance = new UserFacade();
+    private static final UserMapper instance = new UserMapper();
     
-    private UserFacade(){}
+    private UserMapper(){}
     
-    public static UserFacade getInstance(){
+    public static UserMapper getInstance(){
         return instance;
     }
     

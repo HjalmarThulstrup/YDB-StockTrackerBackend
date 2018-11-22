@@ -11,7 +11,7 @@ import com.nimbusds.jose.crypto.MACSigner;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
 import entity.User;
-import entity.UserFacade;
+import mappers.UserMapper;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -42,7 +42,7 @@ public class LoginEndpoint {
 
     //Todo refactor into facade
     try {
-      User user = UserFacade.getInstance().getVeryfiedUser(username, password);
+      User user = UserMapper.getInstance().getVeryfiedUser(username, password);
       String token = createToken(username, user.getRolesAsStrings());
       JsonObject responseJson = new JsonObject();
       responseJson.addProperty("username", username);

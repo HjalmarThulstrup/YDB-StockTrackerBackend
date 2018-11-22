@@ -1,3 +1,2 @@
+mappers\StockMapperTest.class
 usertest\TestDBSetup.class
-dbAccess\DatabaseConnectorTest.class
-dbAccess\StockMapperTest.class

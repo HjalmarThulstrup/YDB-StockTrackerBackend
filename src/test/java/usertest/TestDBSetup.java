@@ -12,6 +12,7 @@ import javax.persistence.Persistence;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import javax.ws.rs.ApplicationPath;
 
 /**
  *

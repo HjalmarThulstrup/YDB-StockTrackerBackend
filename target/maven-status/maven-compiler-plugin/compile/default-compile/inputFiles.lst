@@ -1,3 +1,4 @@
+C:\Users\rlumh\Documents\_REPOS\YDB-StockTrackerBackend\src\main\java\rest\RestApplication.java
 C:\Users\rlumh\Documents\_REPOS\YDB-StockTrackerBackend\src\main\java\security\JWTAuthenticationFilter.java
 C:\Users\rlumh\Documents\_REPOS\YDB-StockTrackerBackend\src\main\java\security\JWTSecurityContext.java
 C:\Users\rlumh\Documents\_REPOS\YDB-StockTrackerBackend\src\main\java\security\LoginEndpoint.java
@@ -6,6 +7,7 @@ C:\Users\rlumh\Documents\_REPOS\YDB-StockTrackerBackend\src\main\java\exceptions
 C:\Users\rlumh\Documents\_REPOS\YDB-StockTrackerBackend\src\main\java\cors\CorsRequestFilter.java
 C:\Users\rlumh\Documents\_REPOS\YDB-StockTrackerBackend\src\main\java\cors\CorsResponseFilter.java
 C:\Users\rlumh\Documents\_REPOS\YDB-StockTrackerBackend\src\main\java\utils\SetupTestUsers.java
+C:\Users\rlumh\Documents\_REPOS\YDB-StockTrackerBackend\src\main\java\security\DummyLogin.java
 C:\Users\rlumh\Documents\_REPOS\YDB-StockTrackerBackend\src\main\java\security\SharedSecret.java
 C:\Users\rlumh\Documents\_REPOS\YDB-StockTrackerBackend\src\main\java\entity\Role.java
 C:\Users\rlumh\Documents\_REPOS\YDB-StockTrackerBackend\src\main\java\exceptions\AuthenticationException.java

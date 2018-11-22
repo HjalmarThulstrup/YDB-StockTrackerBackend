@@ -8,10 +8,6 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import exceptions.AuthenticationException;
 
-/**
- *
- * @author lam@cphbusiness.dk
- */
 public class UserFacade {
 
     //Default EntityManagerFactory

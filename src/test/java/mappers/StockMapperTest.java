@@ -20,7 +20,7 @@ public class StockMapperTest
         System.out.println("Testing addStockToFavourites");
         
         User user = new User("test2", "1234");
-        String symbol = "AMD";
+        String symbol = "GOOG";
         StockMapper instance = StockMapper.getInstance("pu");
         
         boolean result = instance.addStockToFavourites(user, symbol);

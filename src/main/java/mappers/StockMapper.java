@@ -56,14 +56,21 @@ public class StockMapper
 
         try {
             em.getTransaction().begin();
+
             User dbUser = em.find(User.class, user.getUserName());
             Stocks dbStock = em.find(Stocks.class, symbol);
+
+            if (dbStock == null) {
+                System.out.println("Adding stock to list");
+
+                dbStock = new Stocks(symbol);
+            }
 
             dbUser.addToStockList(dbStock);
             dbStock.addUserToList(dbUser);
 
-            em.persist(dbUser);
             em.persist(dbStock);
+            em.persist(dbUser);
 
             em.getTransaction().commit();
 

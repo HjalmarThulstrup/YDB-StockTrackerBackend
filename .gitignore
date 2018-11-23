@@ -171,8 +171,4 @@ $RECYCLE.BIN/
 *.lnk
 
 /nbproject/
-
-=======
-/nbproject/
 /target/
->>>>>>> IEXstockMultifetch

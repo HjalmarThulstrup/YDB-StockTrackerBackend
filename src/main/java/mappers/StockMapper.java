@@ -62,12 +62,49 @@ public class StockMapper
 
             if (dbStock == null) {
                 System.out.println("Adding stock to list");
-
                 dbStock = new Stocks(symbol);
+                em.persist(dbStock);
             }
 
             dbUser.addToStockList(dbStock);
             dbStock.addUserToList(dbUser);
+
+            em.persist(dbStock);
+            em.persist(dbUser);
+
+            em.getTransaction().commit();
+
+        } catch (Exception e) {
+            //Skal nok kastes en custom exception her
+
+            return false;
+        } finally {
+            em.close();
+        }
+
+        return true;
+    }
+    
+    
+    /**
+     * removes a stock from the user's favourites list
+     *
+     * @param user
+     * @param symbol
+     * @return boolean based on whether or not delete was successful
+     */
+    public boolean removeStockFromFavourites(User user, String symbol)
+    {
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+
+            User dbUser = em.find(User.class, user.getUserName());
+            Stocks dbStock = em.find(Stocks.class, symbol);
+
+            dbUser.removeFromStockList(dbStock);
+            dbStock.removeUserFromList(dbUser);
 
             em.persist(dbStock);
             em.persist(dbUser);

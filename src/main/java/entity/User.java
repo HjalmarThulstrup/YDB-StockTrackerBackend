@@ -136,8 +136,14 @@ public class User implements Serializable
         this.stocksList.add(new Stocks(symbol));
     }
     
-    
     public void addToStockList(Stocks stock){
         this.stocksList.add(stock);
+    }
+    
+    public void removeFromStockList(Stocks stock){
+        this.stocksList.remove(stock);
+    }
+        public void removeFromStockList(String symbol){
+        this.stocksList.remove(new Stocks(symbol));
     }
 }

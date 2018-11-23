@@ -95,5 +95,9 @@ public class Stocks implements Serializable
     {
         this.userList.add(user);
     }
-    
+
+    public void removeUserFromList(User user)
+    {
+        this.userList.remove(user);
+    }
 }

@@ -1,2 +1,5 @@
+testUtils\OrderedRunner.class
 mappers\StockMapperTest.class
+testUtils\OrderedRunner$1.class
 usertest\TestDBSetup.class
+testUtils\Order.class

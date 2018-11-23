@@ -9,9 +9,9 @@ import entity.User;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -33,7 +33,7 @@ public class TestDBSetup {
 
     @Test
     public void testAddUser() {
-        System.out.println("addUser: test");
+        System.out.println("addUser: addUserTest");
         User u = new User("test", "1234");
         System.out.println(u.toString());
         User result = null;

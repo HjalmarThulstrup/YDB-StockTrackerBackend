@@ -24,7 +24,7 @@ public class StockMapperTest
     {
         System.out.println("Testing addStockToFavourites");
 
-        User user = new User("test", "1234");
+        User user = new User("TestStockListUser", "1234");
 
         String symbol = "GOOG";
         StockMapper instance = StockMapper.getInstance("jpaputest");
@@ -41,7 +41,7 @@ public class StockMapperTest
     public void testRemoveStockFromFavourites()
     {
         System.out.println("Testing removeStockFromFavourites");
-        User user = new User("test", "1234");
+        User user = new User("TestStockListUser", "1234");
         String symbol = "GOOG";
         StockMapper instance = StockMapper.getInstance("jpaputest");
 

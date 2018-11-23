@@ -1,5 +1,6 @@
 /home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/security/JWTAuthenticationFilter.java
 /home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/utils/SetupTestUsers.java
+/home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/security/DummyLogin.java
 /home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/rest/IEXSingleStockRequest.java
 /home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/security/LoginEndpoint.java
 /home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/cors/CorsResponseFilter.java
@@ -11,6 +12,7 @@
 /home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/rest/StockFetcher.java
 /home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/cors/CorsRequestFilter.java
 /home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/security/SharedSecret.java
+/home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/rest/RestApplication.java
 /home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/exceptions/GenericExceptionMapper.java
 /home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/entity/UserFacade.java
 /home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/rest/ApplicationConfig.java

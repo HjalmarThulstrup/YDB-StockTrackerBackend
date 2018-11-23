@@ -9,9 +9,11 @@ rest/StocksResource.class
 security/JWTAuthenticationFilter.class
 rest/ApplicationConfig.class
 cors/CorsResponseFilter.class
+.netbeans_automatic_build
 entity/Role.class
 rest/IEXStockListRequest.class
 exceptions/GenericExceptionMapper.class
+security/DummyLogin.class
 entity/dev/User_.class
 entity/prod/Role_.class
 utils/SetupTestUsers.class
@@ -21,6 +23,7 @@ security/LoginEndpoint.class
 security/JWTSecurityContext.class
 rest/IEXSingleStockRequest.class
 exceptions/NotFoundException.class
+rest/RestApplication.class
 utils/JsonUtils.class
 rest/IEXStockBatchRequest.class
 entity/UserFacade.class

@@ -16,13 +16,14 @@
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
-            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
-            <property name="javax.persistence.sql-load-script-source" value="scripts/TestFiller.sql"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://skole.rasmuslumholdt.dk:3306/ydbStockTest?zeroDateTimeBehavior=convertToNull"/>
             <property name="javax.persistence.jdbc.user" value="ralle"/>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.password" value="rasmusl2765"/>
             <property name="eclipselink.canonicalmodel.subpackage" value="dev"/>
+            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+            <property name="javax.persistence.sql-load-script-source" value="scripts/TestFiller.sql"/>
+
         </properties>
     </persistence-unit>
 </persistence>

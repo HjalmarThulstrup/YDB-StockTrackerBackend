@@ -16,7 +16,7 @@ import org.junit.Test;
 public class TestDBSetup
 {
 
-    EntityManager em;
+    private EntityManager em;
 
     public TestDBSetup()
     {
@@ -42,9 +42,11 @@ public class TestDBSetup
         try {
             em.getTransaction().begin();
             em.persist(u);
-            em.getTransaction().commit();
 
             result = em.find(User.class, "test");
+
+            em.getTransaction().commit();
+
         } catch (Exception e) {
             //Skal nok kastes en custom exception her
         } finally {

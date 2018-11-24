@@ -56,10 +56,10 @@ public class UserResource
         if (userName.equals(user)) {
             StockFetcher sf = new StockFetcher();
             
-            List<Stocks> userStockList = UserMapper.getInstance().getUserStockList(userName);
+            List<Stocks> userStockList = UserMapper.getInstance("pu").getUserStockList(userName);
             
             Response result = sf.multiFetch(userStockList);
-            return result.ok().build();
+            return Response.ok(result).build();
         } else {
             return Response.ok("Not allowed").build();
         }

@@ -48,7 +48,7 @@ public class DummyLogin {
 
     //Todo refactor into facade
     try {
-      User user = UserMapper.getInstance().getVeryfiedUser(username, password);
+      User user = UserMapper.getInstance("pu").getVerifiedUser(username, password);
       String token = createToken(username, user.getRolesAsStrings());
       JsonObject responseJson = new JsonObject();
       responseJson.addProperty("username", username);

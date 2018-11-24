@@ -27,9 +27,11 @@ public class StockMapperTest
         User user = new User("TestStockListUser", "1234");
 
         String symbol = "GOOG";
+        String amdSymbol = "AMD";
         StockMapper instance = StockMapper.getInstance("jpaputest");
-                
+
         boolean result = instance.addStockToFavourites(user, symbol);
+        instance.addStockToFavourites(user, amdSymbol);
         assertTrue(result);
     }
 
@@ -37,7 +39,7 @@ public class StockMapperTest
      * Test of removeStockFromFavourites method, of class StockMapper.
      */
     @Test
-    @Order(order = 2)
+    @Order(order = 3)
     public void testRemoveStockFromFavourites()
     {
         System.out.println("Testing removeStockFromFavourites");

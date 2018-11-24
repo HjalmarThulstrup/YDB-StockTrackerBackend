@@ -11,20 +11,19 @@ import com.nimbusds.jose.crypto.MACSigner;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
 import entity.User;
-import mappers.UserMapper;
+import exceptions.AuthenticationException;
+import exceptions.GenericExceptionMapper;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import exceptions.AuthenticationException;
-import exceptions.GenericExceptionMapper;
+import mappers.UserMapper;
 
 @Path("login")
 public class LoginEndpoint {
@@ -42,7 +41,7 @@ public class LoginEndpoint {
 
     //Todo refactor into facade
     try {
-      User user = UserMapper.getInstance().getVeryfiedUser(username, password);
+      User user = UserMapper.getInstance("pu").getVerifiedUser(username, password);
       String token = createToken(username, user.getRolesAsStrings());
       JsonObject responseJson = new JsonObject();
       responseJson.addProperty("username", username);

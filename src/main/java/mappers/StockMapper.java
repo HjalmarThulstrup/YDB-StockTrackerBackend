@@ -74,18 +74,13 @@ public class StockMapper
 
             em.getTransaction().commit();
 
-        } catch (Exception e) {
-            //Skal nok kastes en custom exception her
-
-            return false;
         } finally {
             em.close();
         }
 
         return true;
     }
-    
-    
+
     /**
      * removes a stock from the user's favourites list
      *

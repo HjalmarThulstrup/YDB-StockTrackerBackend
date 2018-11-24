@@ -9,10 +9,14 @@ import entity.User;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+<<<<<<< HEAD
 import static org.junit.Assert.*;
 import javax.ws.rs.ApplicationPath;
+=======
+>>>>>>> addStockToUserFav
 
 /**
  *
@@ -34,6 +38,7 @@ public class TestDBSetup {
 
     @Test
     public void testAddUser() {
+<<<<<<< HEAD
 //        System.out.println("addUser: test");
 //        User u = new User("test", "1234");
 //        System.out.println(u.toString());
@@ -56,6 +61,27 @@ public class TestDBSetup {
 //        assertNotNull(result.getSymbols());
 //        assertNotNull(result);
 //        assertTrue(u.getUserName().equals("test"));
+=======
+        System.out.println("addUser: addUserTest");
+        User u = new User("test", "1234");
+        System.out.println(u.toString());
+        User result = null;
+
+        try {
+            em.getTransaction().begin();
+            em.persist(u);
+            em.getTransaction().commit();
+
+            result = em.find(User.class, "test");
+        } catch (Exception e) {
+            //Skal nok kastes en custom exception her
+        } finally {
+            em.close();
+        }
+
+        assertNotNull(result);
+        assertTrue(u.getUserName().equals("test"));
+>>>>>>> addStockToUserFav
 
     }
 }

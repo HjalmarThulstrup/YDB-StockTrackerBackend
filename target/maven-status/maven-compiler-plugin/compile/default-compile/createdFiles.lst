@@ -9,7 +9,6 @@ rest/StocksResource.class
 security/JWTAuthenticationFilter.class
 rest/ApplicationConfig.class
 cors/CorsResponseFilter.class
-.netbeans_automatic_build
 entity/Role.class
 rest/IEXStockListRequest.class
 exceptions/GenericExceptionMapper.class

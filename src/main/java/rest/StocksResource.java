@@ -45,7 +45,7 @@ public class StocksResource
      * @throws java.util.concurrent.ExecutionException
      */
     @GET
-    @Path("single/{symbol}")
+    @Path("/single/{symbol}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getStock(@PathParam("symbol") String symbol) throws InterruptedException, ExecutionException
     {
@@ -63,6 +63,7 @@ public class StocksResource
      * @throws java.util.concurrent.ExecutionException
      */
     @GET
+    @Path("/batch/")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getStockBatch(@QueryParam("batch") List<String> symbols) throws InterruptedException, ExecutionException
     {

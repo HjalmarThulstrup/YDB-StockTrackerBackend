@@ -1,22 +1,24 @@
-/home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/security/JWTAuthenticationFilter.java
-/home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/utils/SetupTestUsers.java
-/home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/rest/IEXSingleStockRequest.java
-/home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/security/LoginEndpoint.java
-/home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/cors/CorsResponseFilter.java
-/home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/rest/DemoResource.java
-/home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/security/JWTSecurityContext.java
-/home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/rest/IEXStockListRequest.java
-/home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/exceptions/AuthenticationException.java
-/home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/rest/IEXStockBatchRequest.java
-/home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/rest/StockFetcher.java
-/home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/cors/CorsRequestFilter.java
-/home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/security/SharedSecret.java
-/home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/exceptions/GenericExceptionMapper.java
-/home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/entity/UserFacade.java
-/home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/rest/ApplicationConfig.java
-/home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/rest/StocksResource.java
-/home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/security/UserPrincipal.java
-/home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/utils/JsonUtils.java
-/home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/exceptions/NotFoundException.java
-/home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/entity/Role.java
-/home/martin/NetBeansProjects/YDB-StockTrackerBackend/src/main/java/entity/User.java
+C:\Users\Wicktus\Documents\Programming_Projects\School\3rd semester projects\YDB-StockTrackerBackend\src\main\java\security\SharedSecret.java
+C:\Users\Wicktus\Documents\Programming_Projects\School\3rd semester projects\YDB-StockTrackerBackend\src\main\java\entity\UserFacade.java
+C:\Users\Wicktus\Documents\Programming_Projects\School\3rd semester projects\YDB-StockTrackerBackend\src\main\java\rest\StockFetcher.java
+C:\Users\Wicktus\Documents\Programming_Projects\School\3rd semester projects\YDB-StockTrackerBackend\src\main\java\security\JWTAuthenticationFilter.java
+C:\Users\Wicktus\Documents\Programming_Projects\School\3rd semester projects\YDB-StockTrackerBackend\src\main\java\security\LoginEndpoint.java
+C:\Users\Wicktus\Documents\Programming_Projects\School\3rd semester projects\YDB-StockTrackerBackend\src\main\java\rest\DemoResource.java
+C:\Users\Wicktus\Documents\Programming_Projects\School\3rd semester projects\YDB-StockTrackerBackend\src\main\java\exceptions\NotFoundException.java
+C:\Users\Wicktus\Documents\Programming_Projects\School\3rd semester projects\YDB-StockTrackerBackend\src\main\java\rest\IEXStockBatchRequest.java
+C:\Users\Wicktus\Documents\Programming_Projects\School\3rd semester projects\YDB-StockTrackerBackend\src\main\java\rest\IEXStockListRequest.java
+C:\Users\Wicktus\Documents\Programming_Projects\School\3rd semester projects\YDB-StockTrackerBackend\src\main\java\utils\SetupTestUsers.java
+C:\Users\Wicktus\Documents\Programming_Projects\School\3rd semester projects\YDB-StockTrackerBackend\src\main\java\entity\User.java
+C:\Users\Wicktus\Documents\Programming_Projects\School\3rd semester projects\YDB-StockTrackerBackend\src\main\java\entity\Role.java
+C:\Users\Wicktus\Documents\Programming_Projects\School\3rd semester projects\YDB-StockTrackerBackend\src\main\java\rest\RestApplication.java
+C:\Users\Wicktus\Documents\Programming_Projects\School\3rd semester projects\YDB-StockTrackerBackend\src\main\java\rest\StocksResource.java
+C:\Users\Wicktus\Documents\Programming_Projects\School\3rd semester projects\YDB-StockTrackerBackend\src\main\java\security\UserPrincipal.java
+C:\Users\Wicktus\Documents\Programming_Projects\School\3rd semester projects\YDB-StockTrackerBackend\src\main\java\security\JWTSecurityContext.java
+C:\Users\Wicktus\Documents\Programming_Projects\School\3rd semester projects\YDB-StockTrackerBackend\src\main\java\exceptions\AuthenticationException.java
+C:\Users\Wicktus\Documents\Programming_Projects\School\3rd semester projects\YDB-StockTrackerBackend\src\main\java\rest\IEXSingleStockRequest.java
+C:\Users\Wicktus\Documents\Programming_Projects\School\3rd semester projects\YDB-StockTrackerBackend\src\main\java\cors\CorsResponseFilter.java
+C:\Users\Wicktus\Documents\Programming_Projects\School\3rd semester projects\YDB-StockTrackerBackend\src\main\java\security\DummyLogin.java
+C:\Users\Wicktus\Documents\Programming_Projects\School\3rd semester projects\YDB-StockTrackerBackend\src\main\java\exceptions\GenericExceptionMapper.java
+C:\Users\Wicktus\Documents\Programming_Projects\School\3rd semester projects\YDB-StockTrackerBackend\src\main\java\cors\CorsRequestFilter.java
+C:\Users\Wicktus\Documents\Programming_Projects\School\3rd semester projects\YDB-StockTrackerBackend\src\main\java\rest\ApplicationConfig.java
+C:\Users\Wicktus\Documents\Programming_Projects\School\3rd semester projects\YDB-StockTrackerBackend\src\main\java\utils\JsonUtils.java

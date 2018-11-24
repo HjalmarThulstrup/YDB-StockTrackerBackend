@@ -45,7 +45,7 @@ public class StockFetcherTest
         StockFetcher instance = new StockFetcher();
         int expectedResponseCode = 200;
         Response result = instance.multiFetch(symbolList);
-
+                
         assertEquals(expectedResponseCode, result.getStatus());
     }
 

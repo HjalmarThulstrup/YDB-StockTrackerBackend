@@ -31,7 +31,7 @@ public class StockFetcher
      * @return a response containing the collected results of multiple fetch
      * requests.
      */
-    public Response multiFetch(List<String> symbolList) //only gets 3 at a time for each batch for now. Might be good to make it smarter by having it calculate some sort of number based on the size of the fetch or maybe pagination page size.
+    public Response multiFetch(List symbolList) //only gets 3 at a time for each batch for now. Might be good to make it smarter by having it calculate some sort of number based on the size of the fetch or maybe pagination page size.
     {
         try {
             List<Future> fetchFutures = getBatchFutures(symbolList);
@@ -62,37 +62,48 @@ public class StockFetcher
     }
 
     /**
-     * creates mini-batches of stock symbols and adds them to a pool for fetching.
+     * creates mini-batches of stock symbols and adds them to a pool for
+     * fetching.
      *
      * @param symbolList
      * @return a list of futures
      */
-    private List<Future> getBatchFutures(List<String> symbolList) //only gets 3 at a time for each batch for now. Might be good to make it smarter by having it calculate some sort of number based on the size of the fetch or maybe pagination page size.
+    private List<Future> getBatchFutures(List symbolList) //only gets 3 at a time for each batch for now. Might be good to make it smarter by having it calculate some sort of number based on the size of the fetch or maybe pagination page size.
     {
         List<Future> fetchFutures = new ArrayList();
         int originalSize = symbolList.size();
         int currentSize = originalSize;
         boolean batched = false;
         while (!batched) {
+            int batchSize;
+
             if (currentSize - 3 >= 0) {
-                String[] batchArr = {symbolList.remove(0), symbolList.remove(1), symbolList.remove(2)};
-                fetchFutures.add(pool.submit(new IEXStockBatchRequest(batchArr)));
+                batchSize = 2;
             } else {
-                fetchFutures.add(pool.submit(new IEXStockBatchRequest(symbolList.toArray(new String[0]))));
+                batchSize = currentSize;
                 batched = true;
             }
 
+            String[] batchArr = new String[batchSize];
+
+            for (int i = 0; i < batchSize; i++) {
+                batchArr[i] = symbolList.remove(i).toString();
+            }
+
+            fetchFutures.add(pool.submit(new IEXStockBatchRequest(batchArr)));
             currentSize = symbolList.size();
         }
         return fetchFutures;
     }
 
     /**
-     * used to multithread the fetching of a single stock. Sort of pointless since there is only one fetch call.
+     * used to multithread the fetching of a single stock. Sort of pointless
+     * since there is only one fetch call.
+     *
      * @param symbol
      * @return a response containing a single stock
      * @throws InterruptedException
-     * @throws ExecutionException 
+     * @throws ExecutionException
      */
     public Response singleFetch(String symbol) throws InterruptedException, ExecutionException
     {
@@ -101,10 +112,11 @@ public class StockFetcher
 
     /**
      * Fetches a list of stocks based on the IEX /list endpoint.
+     *
      * @param type
      * @return a response containing 10 stocks.
      * @throws InterruptedException
-     * @throws ExecutionException 
+     * @throws ExecutionException
      */
     public Response listFetch(String type) throws InterruptedException, ExecutionException
     {

@@ -15,7 +15,6 @@ import com.nimbusds.jose.crypto.MACSigner;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
 import entity.User;
-import entity.UserFacade;
 import exceptions.AuthenticationException;
 import exceptions.GenericExceptionMapper;
 import java.util.Date;
@@ -28,6 +27,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import mappers.UserMapper;
 
 /**
  *
@@ -48,7 +48,7 @@ public class DummyLogin {
 
     //Todo refactor into facade
     try {
-      User user = UserFacade.getInstance().getVeryfiedUser(username, password);
+      User user = UserMapper.getInstance().getVeryfiedUser(username, password);
       String token = createToken(username, user.getRolesAsStrings());
       JsonObject responseJson = new JsonObject();
       responseJson.addProperty("username", username);

@@ -88,7 +88,7 @@ public class Stocks implements Serializable
     @Override
     public String toString()
     {
-        return "entity.Stocks[ symbol=" + symbol + " ]";
+        return symbol;
     }
 
     public void addUserToList(User user)

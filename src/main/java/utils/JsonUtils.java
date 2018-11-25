@@ -5,8 +5,7 @@ import java.util.List;
 /**
  * A set of tools for working with Json data.
  */
-public class JsonUtils
-{
+public class JsonUtils {
 
     /**
      * Takes an array of json arrays and merges them into one string.
@@ -14,15 +13,16 @@ public class JsonUtils
      * @param jsonArrays
      * @return single string containing a json array.
      */
-    public static String jsonArrayMerger(String[] jsonArrays)
-    {
+    public static String jsonArrayMerger(String[] jsonArrays) {
         StringBuilder sb = new StringBuilder("{");
 
-        for (String jsonArray : jsonArrays) {
-            jsonArray = jsonArray.substring(1, jsonArray.length() - 1);
+        for (int i = 0; i < jsonArrays.length; i++) {
+            jsonArrays[i] = jsonArrays[i].substring(1, jsonArrays[i].length() - 1);
 
-            sb.append(jsonArray);
-            sb.append(",");
+            sb.append(jsonArrays[i]);
+            if (i < jsonArrays.length-1) {
+                sb.append(",");
+            }
         }
 
         sb.deleteCharAt(sb.length() - 1);
@@ -36,8 +36,7 @@ public class JsonUtils
      * @param jsonArrays
      * @return single string containing a json array.
      */
-    public static String jsonArrayMerger(List<String> jsonArrays)
-    {
+    public static String jsonArrayMerger(List<String> jsonArrays) {
         return jsonArrayMerger(jsonArrays.toArray(new String[0]));
     }
 }

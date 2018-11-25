@@ -1,5 +1,6 @@
 package rest;
 
+import com.google.gson.Gson;
 import entity.Stocks;
 import entity.User;
 import java.util.List;
@@ -83,14 +84,14 @@ public class UserResource
     public Response addStockToList(@PathParam("username") String userName, @PathParam("stock") String symbol)
     {
         String user = securityContext.getUserPrincipal().getName();
-
+        Gson gson = new Gson();
         if (userName.equals(user)) {
             StockMapper sm = StockMapper.getInstance("pu");
 
             boolean result = sm.addStockToFavourites(new User(userName, ""), symbol);
 
             if (result) {
-                return Response.ok("Stock added").build();
+                return Response.ok(gson.toJson("Stock added")).build();
             } else {
                 return Response.ok("Stock not added").build();
             }

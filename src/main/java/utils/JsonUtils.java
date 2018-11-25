@@ -17,8 +17,9 @@ public class JsonUtils {
     public static String jsonArrayMerger(String[] jsonArrays) {
         JSONArray res = new JSONArray();
         
-        for (int i = 0; i < jsonArrays.length; i++) {
-            res.appendElement(jsonArrays[i]);
+        for (String jsonArray : jsonArrays) {
+            jsonArray = jsonArray.substring(1, jsonArray.length() - 1);
+            res.appendElement(jsonArray);
         }
         //System.out.println(res.toJSONString());
         return res.toJSONString().replaceAll("\\\\", "'").replaceAll("\"", " ").replaceAll("'", "\"");

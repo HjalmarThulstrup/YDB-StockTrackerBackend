@@ -78,7 +78,7 @@ public class StockFetcher
             int batchSize;
 
             if (currentSize - 3 >= 0) {
-                batchSize = 2;
+                batchSize = 3;
             } else {
                 batchSize = currentSize;
                 batched = true;
@@ -86,8 +86,8 @@ public class StockFetcher
 
             String[] batchArr = new String[batchSize];
 
-            for (int i = 0; i < batchSize; i++) {
-                batchArr[i] = symbolList.remove(i).toString();
+            for (int i = 0; i < batchArr.length; i++) {
+                batchArr[i] = symbolList.remove(0).toString();
             }
 
             fetchFutures.add(pool.submit(new IEXStockBatchRequest(batchArr)));

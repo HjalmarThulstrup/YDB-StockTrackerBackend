@@ -42,7 +42,7 @@ public class DummyLogin {
   @Produces(MediaType.APPLICATION_JSON)
   public Response login(String jsonString) throws AuthenticationException {
       
-      String username = "test";
+      String username = "martin";
       String password = "1234";
       
 

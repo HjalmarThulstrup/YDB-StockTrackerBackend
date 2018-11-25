@@ -63,7 +63,7 @@ public class UserResource
 
             List<Stocks> userStockList = UserMapper.getInstance("pu").getUserStockList(userName);
 
-            return sf.multiFetch(userStockList);
+            return sf.multiSingleFetch(userStockList);
         } else {
             return Response.ok("Not allowed").build();
         }

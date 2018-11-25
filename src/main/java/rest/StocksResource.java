@@ -68,7 +68,7 @@ public class StocksResource
     public Response getStockBatch(@QueryParam("batch") List<String> symbols) throws InterruptedException, ExecutionException
     {
         StockFetcher sf = new StockFetcher();
-        return sf.multiFetch(symbols);
+        return sf.multiBatchFetch(symbols);
     }
 
     /**

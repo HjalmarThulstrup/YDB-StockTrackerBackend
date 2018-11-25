@@ -31,7 +31,7 @@ public class StockFetcher
      * @return a response containing the collected results of multiple fetch
      * requests.
      */
-    public Response multiFetch(List symbolList) //only gets 3 at a time for each batch for now. Might be good to make it smarter by having it calculate some sort of number based on the size of the fetch or maybe pagination page size.
+    public Response multiBatchFetch(List symbolList) //only gets 3 at a time for each batch for now. Might be good to make it smarter by having it calculate some sort of number based on the size of the fetch or maybe pagination page size.
     {
         try {
             List<Future> fetchFutures = getBatchFutures(symbolList);
@@ -122,4 +122,47 @@ public class StockFetcher
     {
         return (Response) pool.submit(new IEXStockListRequest(type)).get();
     }
+
+    /**
+     * Fetches a batch of stocks based on the IEX /list endpoint.
+     *
+     * @param symbols
+     * @return a response containing 10 stocks.
+     * @throws InterruptedException
+     * @throws ExecutionException
+     */
+    public Response batchFetch(String[] symbols) throws InterruptedException, ExecutionException
+    {
+        return (Response) pool.submit(new IEXStockBatchRequest(symbols)).get();
+    }
+
+    /**
+     * A multiple single fetch with multi-threading
+     *
+     * @param symbolList
+     * @return a response containing the collected results of multiple fetch
+     * requests.
+     */
+    public Response multiSingleFetch(List symbolList) //only gets 3 at a time for each batch for now. Might be good to make it smarter by having it calculate some sort of number based on the size of the fetch or maybe pagination page size.
+    {
+        try {
+            List<Future> fetchFutures = getSingleFutures(symbolList);
+            return Response.ok(mergeFutureResults(fetchFutures)).build();
+        } catch (InterruptedException | ExecutionException ex) {
+            Logger.getLogger(StockFetcher.class.getName()).log(Level.SEVERE, null, ex);
+            return Response.serverError().build();
+        }
+    }
+
+    private List<Future> getSingleFutures(List symbolList)
+    {
+        List<Future> fetchFutures = new ArrayList();
+
+        for (Object stock : symbolList) {
+            fetchFutures.add(pool.submit(new IEXSingleStockRequest(stock.toString())));
+        }
+
+        return fetchFutures;
+    }
+
 }

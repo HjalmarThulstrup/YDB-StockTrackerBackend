@@ -1,6 +1,7 @@
 package utils;
 
 import java.util.List;
+import net.minidev.json.JSONArray;
 
 /**
  * A set of tools for working with Json data.
@@ -14,20 +15,13 @@ public class JsonUtils {
      * @return single string containing a json array.
      */
     public static String jsonArrayMerger(String[] jsonArrays) {
-        StringBuilder sb = new StringBuilder("{");
-
+        JSONArray res = new JSONArray();
+        
         for (int i = 0; i < jsonArrays.length; i++) {
-            jsonArrays[i] = jsonArrays[i].substring(1, jsonArrays[i].length() - 1);
-
-            sb.append(jsonArrays[i]);
-            if (i < jsonArrays.length-1) {
-                sb.append(",");
-            }
+            res.appendElement(jsonArrays[i]);
         }
-
-        sb.deleteCharAt(sb.length() - 1);
-        sb.append("}");
-        return sb.toString().trim();
+        //System.out.println(res.toJSONString());
+        return res.toJSONString();
     }
 
     /**

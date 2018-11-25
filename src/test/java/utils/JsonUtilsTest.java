@@ -26,8 +26,10 @@ public class JsonUtilsTest
     public void testJsonArrayMerger()
     {
         System.out.println("Tests that jsonArrayMerger creates valid json arrays");
-        String[] jsonArrays = {"{{Name=\"test1\"},{Name=\"test2\"}}", "{{Name=\"test4\"}}"};
-        String expResult = "{{Name=\"test1\"},{Name=\"test2\"},{Name=\"test4\"}}";
+        String[] jsonArrays = new String[2];
+        jsonArrays[0] = "{\"AAPL\": {\"quote\": {\"symbol\": \"AAPL\",\"companyName\": \"Apple Inc.\",\"primaryExchange\": \"Nasdaq Global Select\",\"sector\": \"Technology\"}},\"FB\": {\"quote\": {\"symbol\": \"FB\",\"companyName\": \"Facebook Inc.\",\"primaryExchange\": \"Nasdaq Global Select\",\"sector\": \"Technology\"}}}";
+        jsonArrays[1] = "{\"AAPL\": {\"quote\": {\"symbol\": \"AAPL\",\"companyName\": \"Apple Inc.\",\"primaryExchange\": \"Nasdaq Global Select\",\"sector\": \"Technology\"}},\"FB\": {\"quote\": {\"symbol\": \"FB\",\"companyName\": \"Facebook Inc.\",\"primaryExchange\": \"Nasdaq Global Select\",\"sector\": \"Technology\"}}}";
+
         String result = JsonUtils.jsonArrayMerger(jsonArrays);
         System.out.println(result);
         System.out.println(expResult);

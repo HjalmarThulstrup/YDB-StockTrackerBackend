@@ -36,7 +36,7 @@ public class JsonUtilsTest
         System.out.println(result);
 
         
-        boolean valid = false;
+        boolean valid;
         try {
             JsonParser parser = new JsonParser();
             parser.parse(result);

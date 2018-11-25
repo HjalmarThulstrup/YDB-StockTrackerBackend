@@ -21,7 +21,7 @@ public class JsonUtils {
             res.appendElement(jsonArrays[i]);
         }
         //System.out.println(res.toJSONString());
-        return res.toJSONString().replaceAll("\\\\", "'").replaceAll("\"", " ");
+        return res.toJSONString().replaceAll("\\\\", "'").replaceAll("\"", " ").replaceAll("'", "\"");
     }
 
     /**

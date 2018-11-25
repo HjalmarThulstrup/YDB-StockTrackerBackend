@@ -4,9 +4,9 @@ import entity.Stocks;
 import entity.User;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -108,7 +108,7 @@ public class UserResource
      * @param symbol
      * @return a json array of stocks
      */
-    @PUT
+    @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{username}/remove/{stock}")
     @RolesAllowed("user")

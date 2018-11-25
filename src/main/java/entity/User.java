@@ -131,19 +131,34 @@ public class User implements Serializable
     {
         this.stocksList = stocksList;
     }
-    
-    public void addToStockList(String symbol){
+
+    public void addToStockList(String symbol)
+    {
         this.stocksList.add(new Stocks(symbol));
     }
-    
-    public void addToStockList(Stocks stock){
+
+    public void addToStockList(Stocks stock)
+    {
         this.stocksList.add(stock);
     }
-    
-    public void removeFromStockList(Stocks stock){
+
+    public void removeFromStockList(Stocks stock)
+    {
         this.stocksList.remove(stock);
     }
-        public void removeFromStockList(String symbol){
+
+    public void removeFromStockList(String symbol)
+    {
         this.stocksList.remove(new Stocks(symbol));
+    }
+
+    public List<String> getStocksListAsStrings()
+    {
+        List<String> result = new ArrayList();
+        for (Stocks stock : stocksList) {
+            result.add(stock.toString());
+        }
+
+        return result;
     }
 }

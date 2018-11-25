@@ -24,7 +24,7 @@ public class StockFetcherTest
     }
 
     /**
-     * Testing the multiFetch method from the StockFetcher class. Checks to see
+     * Testing the multiBatchFetch method from the StockFetcher class. Checks to see
      * if response fetch is correct by checking the response code.
      */
     @Test
@@ -44,7 +44,7 @@ public class StockFetcherTest
 
         StockFetcher instance = new StockFetcher();
         int expectedResponseCode = 200;
-        Response result = instance.multiFetch(symbolList);
+        Response result = instance.multiBatchFetch(symbolList);
         System.out.println(result.getEntity());
         assertEquals(expectedResponseCode, result.getStatus());
     }
@@ -86,6 +86,20 @@ public class StockFetcherTest
         Response result = instance.listFetch(type);
 
         assertEquals(expectedResponseCode, result.getStatus());
+    }
+
+    /**
+     * Test of batchFetch method, of class StockFetcher.
+     */
+    @Test
+    public void testBatchFetch() throws Exception
+    {
+        System.out.println("batchFetch");
+        String[] symbols = {"AMD", "FB", "GOOG"};
+        StockFetcher instance = new StockFetcher();
+        Response result = instance.batchFetch(symbols);
+        System.out.println(result.getEntity());
+
     }
 
 }

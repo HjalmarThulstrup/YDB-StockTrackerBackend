@@ -1,12 +1,14 @@
 package utils;
 
 import java.util.List;
-import net.minidev.json.JSONArray;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  * A set of tools for working with Json data.
  */
-public class JsonUtils {
+public class JsonUtils
+{
 
     /**
      * Takes an array of json arrays and merges them into one string.
@@ -14,15 +16,41 @@ public class JsonUtils {
      * @param jsonArrays
      * @return single string containing a json array.
      */
-    public static String jsonArrayMerger(String[] jsonArrays) {
-        JSONArray res = new JSONArray();
-        
+    public static String jsonArrayMerger(String[] jsonArrays)
+    {
+        JSONArray result = new JSONArray();
+
         for (String jsonArray : jsonArrays) {
-            jsonArray = jsonArray.substring(1, jsonArray.length() - 1);
-            res.appendElement(jsonArray);
+            JSONObject workingObj = new JSONObject(jsonArray);
+
+            for (int i = 0; i < workingObj.length(); i++) {
+                result.put(workingObj.toJSONArray(result).get(i));
+            }
         }
-        //System.out.println(res.toJSONString());
-        return res.toJSONString().replaceAll("\\\\", "'").replaceAll("\"", " ").replaceAll("'", "\"");
+
+        return result.toString();
+    }
+
+    /**
+     * Takes an array of json arrays and merges them into one string.
+     *
+     * @param jsonStocks
+     * @return single string containing a json array.
+     */
+    public static String jsonArrayBuilder(String[] jsonStocks)
+    {
+        StringBuilder sb = new StringBuilder("[");
+
+        for (int i = 0; i < jsonStocks.length; i++) {
+            String jsonStock = jsonStocks[i];
+            sb.append(jsonStock);
+
+            if (i < jsonStocks.length - 1) {
+                sb.append(",");
+            }
+        }
+
+        return sb.append("]").toString();
     }
 
     /**
@@ -31,7 +59,8 @@ public class JsonUtils {
      * @param jsonArrays
      * @return single string containing a json array.
      */
-    public static String jsonArrayMerger(List<String> jsonArrays) {
+    public static String jsonArrayMerger(List<String> jsonArrays)
+    {
         return jsonArrayMerger(jsonArrays.toArray(new String[0]));
     }
 }

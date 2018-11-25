@@ -32,7 +32,6 @@ public class JsonUtilsTest
 
         String result = JsonUtils.jsonArrayMerger(jsonArrays);
         System.out.println(result);
-        System.out.println(expResult);
 
         assertEquals(expResult, result);
     }

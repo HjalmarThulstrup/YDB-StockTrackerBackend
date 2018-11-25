@@ -29,7 +29,7 @@ import exceptions.GenericExceptionMapper;
 @Path("login")
 public class LoginEndpoint {
 
-  public static final int TOKEN_EXPIRE_TIME = 1000 * 60 * 30; //30 min
+
 
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
@@ -42,8 +42,9 @@ public class LoginEndpoint {
 
     //Todo refactor into facade
     try {
+        JWTCreator jwtc = new JWTCreator();
       User user = UserFacade.getInstance().getVeryfiedUser(username, password);
-      String token = createToken(username, user.getRolesAsStrings());
+      String token = jwtc.createToken(username, user.getRolesAsStrings());
       JsonObject responseJson = new JsonObject();
       responseJson.addProperty("username", username);
       responseJson.addProperty("token", token);
@@ -58,29 +59,5 @@ public class LoginEndpoint {
     throw new AuthenticationException("Invalid username or password! Please try again");
   }
 
-  private String createToken(String userName, List<String> roles) throws JOSEException {
-
-    StringBuilder res = new StringBuilder();
-    for (String string : roles) {
-      res.append(string);
-      res.append(",");
-    }
-    String rolesAsString = res.length() > 0 ? res.substring(0, res.length() - 1) : "";
-    String issuer = "YDB";
-
-    JWSSigner signer = new MACSigner(SharedSecret.getSharedKey());
-    Date date = new Date();
-    JWTClaimsSet claimsSet = new JWTClaimsSet.Builder()
-            .subject(userName)
-            .claim("username", userName)
-            .claim("roles", rolesAsString)
-            .claim("issuer", issuer)
-            .issueTime(date)
-            .expirationTime(new Date(date.getTime() + TOKEN_EXPIRE_TIME))
-            .build();
-    SignedJWT signedJWT = new SignedJWT(new JWSHeader(JWSAlgorithm.HS256), claimsSet);
-    signedJWT.sign(signer);
-    return signedJWT.serialize();
-
-  }
+  
 }

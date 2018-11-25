@@ -8,6 +8,7 @@ package usertest;
 import entity.Role;
 import entity.User;
 import entity.UserFacade;
+import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -37,12 +38,16 @@ public class UserFacadeTest {
     
     @Test
     public void testPersistUser() {
-        User testUser = new User("testing", "1234");
+        User testUser = new User("yeeeet", "1234");
         testUser.addRole(new Role("user"));
         
         User u = UserFacade.getInstance().persistUser(testUser);
         
-        assertTrue(u.getUserName().equals("testing"));
+        assertTrue(u.getUserName().equals("yeeeet"));
         
+        List<String> roles = u.getRolesAsStrings();
+        
+        assertTrue(roles.size() == 1);
+        assertTrue(roles.get(0).equals("user"));
     }
 }

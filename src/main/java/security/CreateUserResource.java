@@ -5,8 +5,10 @@
  */
 package security;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.nimbusds.jose.JOSEException;
 import entity.Role;
 import entity.User;
 import entity.UserFacade;
@@ -30,24 +32,19 @@ import javax.ws.rs.core.Response;
 @Path("createUser")
 public class CreateUserResource {
 
-    @Context
-    private UriInfo context;
-
-    /**
-     * Creates a new instance of CreateUserResource
-     */
-    public CreateUserResource() {
+    @GET
+    public String test() {
+        return ("HEJ!");
     }
-    
     /**
-     * 
+     * Creates user from jsonString object. Example: { "username": "test", "password", "1234" }
      * @param jsonString
      * @return 
      */
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response createUser(String jsonString) throws UserAlreadyExistException {
+    public Response createUser(String jsonString) throws UserAlreadyExistException, JOSEException {
         JsonObject json = new JsonParser().parse(jsonString).getAsJsonObject();
         String username = json.get("username").getAsString();
         
@@ -61,27 +58,14 @@ public class CreateUserResource {
         User u = new User(username, pass);
         u.addRole(new Role("user"));
         
+        JWTCreator jwtc = new JWTCreator();
         
+        String token = jwtc.createToken(username, u.getRolesAsStrings());
+        System.out.println(token);
+        JsonObject responseJson = new JsonObject();
+        responseJson.addProperty("username", username);
+        responseJson.addProperty("token", token);
+        return Response.ok(new Gson().toJson(responseJson)).build();
         
-    }
-
-    /**
-     * Retrieves representation of an instance of security.CreateUserResource
-     * @return an instance of java.lang.String
-     */
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public String getJson() {
-        //TODO return proper representation object
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * PUT method for updating or creating an instance of CreateUserResource
-     * @param content representation for the resource
-     */
-    @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void putJson(String content) {
     }
 }

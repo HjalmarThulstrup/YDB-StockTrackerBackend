@@ -54,6 +54,7 @@ public class UserFacade {
             
             return u;
         } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
         

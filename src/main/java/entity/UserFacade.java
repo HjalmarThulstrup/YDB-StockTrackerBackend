@@ -33,5 +33,32 @@ public class UserFacade {
         }
         return user;
     }
+    
+    public boolean verifyUsername(String username) {
+        EntityManager em = emf.createEntityManager();
+        User u = em.find(User.class, username);
+        
+        return u == null;
+         
+   }
+
+    public User persistUser(User u) {
+        
+        EntityManager em = emf.createEntityManager();
+        
+        try {
+            em.getTransaction().begin();
+            em.persist(u);
+            em.getTransaction().commit();
+            em.close();
+            
+            return u;
+        } catch (Exception e) {
+            return null;
+        }
+        
+        
+    }
+    
 
 }

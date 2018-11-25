@@ -143,7 +143,7 @@ public class StockFetcher
      * @return a response containing the collected results of multiple fetch
      * requests.
      */
-    public Response multiSingleFetch(List symbolList) //only gets 3 at a time for each batch for now. Might be good to make it smarter by having it calculate some sort of number based on the size of the fetch or maybe pagination page size.
+    public Response multiSingleFetch(List<String> symbolList) //only gets 3 at a time for each batch for now. Might be good to make it smarter by having it calculate some sort of number based on the size of the fetch or maybe pagination page size.
     {
         try {
             List<Future> fetchFutures = getSingleFutures(symbolList);
@@ -154,12 +154,12 @@ public class StockFetcher
         }
     }
 
-    private List<Future> getSingleFutures(List symbolList)
+    private List<Future> getSingleFutures(List<String> symbolList)
     {
         List<Future> fetchFutures = new ArrayList();
 
-        for (Object stock : symbolList) {
-            fetchFutures.add(pool.submit(new IEXSingleStockRequest(stock.toString())));
+        for (String stock : symbolList) {
+            fetchFutures.add(pool.submit(new IEXSingleStockRequest(stock)));
         }
 
         return fetchFutures;

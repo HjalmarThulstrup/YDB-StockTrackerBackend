@@ -1,7 +1,6 @@
 package rest;
 
 import com.google.gson.Gson;
-import entity.Stocks;
 import entity.User;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
@@ -61,7 +60,7 @@ public class UserResource
         if (userName.equals(user)) {
             StockFetcher sf = new StockFetcher();
 
-            List<Stocks> userStockList = UserMapper.getInstance("pu").getUserStockList(userName);
+            List<String> userStockList = UserMapper.getInstance("pu").getUserStockList(userName);
 
             return sf.multiSingleFetch(userStockList);
         } else {

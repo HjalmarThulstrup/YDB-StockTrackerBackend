@@ -1,6 +1,5 @@
 package mappers;
 
-import entity.Stocks;
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
@@ -29,14 +28,14 @@ public class UserMapperTest
 
         UserMapper instance = UserMapper.getInstance("jpaputest");
 
-        List<Stocks> expResult = new ArrayList()
+        List<String> expResult = new ArrayList()
         {
             {
-                add(new Stocks("AMD"));
+                add("AMD");
             }
         };
 
-        List<Stocks> result = instance.getUserStockList(username);
+        List<String> result = instance.getUserStockList(username);
         assertEquals(expResult, result);
     }
 

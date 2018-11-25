@@ -1,8 +1,11 @@
 package utils;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import java.util.List;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import java.util.Map;
 
 /**
  * A set of tools for working with Json data.
@@ -16,41 +19,27 @@ public class JsonUtils
      * @param jsonArrays
      * @return single string containing a json array.
      */
-    public static String jsonArrayMerger(String[] jsonArrays)
+    public static String jsonBatchMerger(String[] jsonArrays)
     {
-        JSONArray result = new JSONArray();
+        JsonParser parser = new JsonParser();
 
-        for (String jsonArray : jsonArrays) {
-            JSONObject workingObj = new JSONObject(jsonArray);
-
-            for (int i = 0; i < workingObj.length(); i++) {
-                result.put(workingObj.toJSONArray(result).get(i));
-            }
-        }
-
-        return result.toString();
-    }
-
-    /**
-     * Takes an array of json arrays and merges them into one string.
-     *
-     * @param jsonStocks
-     * @return single string containing a json array.
-     */
-    public static String jsonArrayBuilder(String[] jsonStocks)
-    {
         StringBuilder sb = new StringBuilder("[");
 
-        for (int i = 0; i < jsonStocks.length; i++) {
-            String jsonStock = jsonStocks[i];
-            sb.append(jsonStock);
+        for (int i = 0; i < jsonArrays.length; i++) {
 
-            if (i < jsonStocks.length - 1) {
+            JsonElement objects = parser.parse(jsonArrays[i]);
+            JsonObject jsonObj = objects.getAsJsonObject();
+
+            JsonArray arr = new JsonArray();
+            for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+                //System.out.println("Key = " + entry.getKey() + " Value = " + entry.getValue());
+                sb.append(entry.getValue().getAsJsonObject().get("quote"));
                 sb.append(",");
             }
+            
         }
 
-        return sb.append("]").toString();
+        return sb.toString().substring(0, sb.lastIndexOf(",")) + "]";
     }
 
     /**
@@ -61,6 +50,6 @@ public class JsonUtils
      */
     public static String jsonArrayMerger(List<String> jsonArrays)
     {
-        return jsonArrayMerger(jsonArrays.toArray(new String[0]));
+        return jsonBatchMerger(jsonArrays.toArray(new String[0]));
     }
 }

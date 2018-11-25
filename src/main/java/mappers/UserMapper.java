@@ -1,5 +1,6 @@
 package mappers;
 
+import entity.Stocks;
 import entity.User;
 import exceptions.AuthenticationException;
 import java.util.List;
@@ -74,14 +75,14 @@ public class UserMapper
      * @param username
      * @return a list of stocks.
      */
-    public List<String> getUserStockList(String username)
+    public List<Stocks> getUserStockList(String username)
     {
         EntityManager em = emf.createEntityManager();
 
         User user = em.find(User.class, username);
         em.close();
 
-        return user.getRolesAsStrings();
+        return user.getStocksList();
     }
 
 }

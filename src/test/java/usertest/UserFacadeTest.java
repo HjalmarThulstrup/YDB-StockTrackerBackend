@@ -38,12 +38,12 @@ public class UserFacadeTest {
     
     @Test
     public void testPersistUser() {
-        User testUser = new User("yeeeet", "1234");
+        User testUser = new User("yeeeeet", "1234");
         testUser.addRole(new Role("user"));
         
         User u = UserFacade.getInstance().persistUser(testUser);
         
-        assertTrue(u.getUserName().equals("yeeeet"));
+        assertTrue(u.getUserName().equals("yeeeeet"));
         
         List<String> roles = u.getRolesAsStrings();
         

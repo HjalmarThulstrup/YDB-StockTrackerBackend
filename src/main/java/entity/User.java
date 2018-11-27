@@ -161,6 +161,13 @@ public class User implements Serializable
 
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "User{" + "userName=" + userName + '}';
+    }
+    
+    
 }
 
 /*

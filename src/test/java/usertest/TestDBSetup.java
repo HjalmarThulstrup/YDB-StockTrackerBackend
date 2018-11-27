@@ -35,7 +35,7 @@ public class TestDBSetup
     {
 
         System.out.println("addUser: addUserTest");
-        User u = new User("test", "1234");
+        User u = new User("test46", "1234");
         System.out.println(u.toString());
         User result = null;
 
@@ -43,7 +43,7 @@ public class TestDBSetup
             em.getTransaction().begin();
             em.persist(u);
 
-            result = em.find(User.class, "test");
+            result = em.find(User.class, "test46");
 
             em.getTransaction().commit();
 
@@ -54,6 +54,6 @@ public class TestDBSetup
         }
 
         assertNotNull(result);
-        assertTrue(u.getUserName().equals("test"));
+        assertTrue(u.getUserName().equals("test46"));
     }
 }

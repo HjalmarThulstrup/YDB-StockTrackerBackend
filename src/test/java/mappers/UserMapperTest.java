@@ -1,6 +1,8 @@
 package mappers;
 
+import entity.Role;
 import entity.Stocks;
+import entity.User;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -30,19 +32,33 @@ public class UserMapperTest
      * Test of getUserStockList method, of class UserMapper.
      */
     @Test
-    @Order(order = 2)
+   
     public void testGetUserStockList()
     {
+        //Create EntityManager to connect to db
+        EntityManager em = emf.createEntityManager();
+        
+        //Create user, add role and stocks to put into db
+        User u = new User("TestStockListUserYEET", "1234");
+        u.addRole(em.find(Role.class, "user"));
+        
+        
+        //Persist and commit user to db
+        em.getTransaction().begin();
+        em.persist(u);
+        em.getTransaction().commit();
+        em.close();
+        StockMapper.getInstance("jpaputest").addStockToFavourites(u, "TST");
         
         System.out.println("Testing getUserStockList");
-        String username = "TestStockListUser";
+        String username = "TestStockListUserYEET";
 
         UserMapper instance = UserMapper.getInstance("jpaputest");
 
         List<Stocks> expResult = new ArrayList()
         {
             {
-                add(new Stocks("AMD"));
+                add(new Stocks("TST"));
             }
         };
 

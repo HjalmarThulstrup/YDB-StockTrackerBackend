@@ -51,11 +51,6 @@ public class UserFacadeTest {
     public void testPersistUser() {
         EntityManager em = emf.createEntityManager();
         
-        Role role = new Role("user");
-        em.getTransaction().begin();
-        em.persist(role);
-        em.getTransaction().commit();
-        em.close();
         
         em = emf.createEntityManager();
         

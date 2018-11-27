@@ -15,6 +15,7 @@ public class ApplicationConfig extends Application {
         return resources;
     }
 
+
     /**
      * Do not modify addRestResourceClasses() method. It is automatically
      * populated with all resources defined in the project. If required, comment
@@ -29,6 +30,6 @@ public class ApplicationConfig extends Application {
         resources.add(security.JWTAuthenticationFilter.class);
         resources.add(security.LoginEndpoint.class);
         resources.add(security.DummyLogin.class);
+        resources.add(security.CreateUserResource.class);
     }
-
 }

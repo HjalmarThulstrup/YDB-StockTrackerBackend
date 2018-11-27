@@ -9,6 +9,9 @@ import entity.Role;
 import entity.User;
 import entity.UserFacade;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -18,32 +21,50 @@ import static org.junit.Assert.*;
  * @author rlumh
  */
 public class UserFacadeTest {
+    EntityManagerFactory emf;
     
     public UserFacadeTest() {
     }
     
     @Before
     public void setUp() {
+        emf = Persistence.createEntityManagerFactory("jpaputest");
         
     }
     
     @Test
     public void testVerifyUsername() {
-        boolean validUsername = UserFacade.getInstance().verifyUsername("test");
+        EntityManager em = emf.createEntityManager();
+        User testUser = new User("yoat", "1234");
+        testUser.addRole(em.find(Role.class, "user"));
+        
+        User u = UserFacade.getInstance().persistUser(testUser);
+        
+        boolean validUsername = UserFacade.getInstance().verifyUsername("yoat");
         assertFalse(validUsername);
         
-        validUsername = UserFacade.getInstance().verifyUsername("dawdasd");
+        validUsername = UserFacade.getInstance().verifyUsername("validUsername");
         assertTrue(validUsername);
     }
     
     @Test
     public void testPersistUser() {
-        User testUser = new User("yeeeeet", "1234");
-        testUser.addRole(new Role("user"));
+        EntityManager em = emf.createEntityManager();
+        
+        Role role = new Role("user");
+        em.getTransaction().begin();
+        em.persist(role);
+        em.getTransaction().commit();
+        em.close();
+        
+        em = emf.createEntityManager();
+        
+        User testUser = new User("yeeet", "1234");
+        testUser.addRole(em.find(Role.class, "user"));
         
         User u = UserFacade.getInstance().persistUser(testUser);
         
-        assertTrue(u.getUserName().equals("yeeeeet"));
+        assertTrue(u.getUserName().equals("yeeet"));
         
         List<String> roles = u.getRolesAsStrings();
         

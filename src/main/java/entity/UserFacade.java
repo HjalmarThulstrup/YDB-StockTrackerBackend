@@ -11,7 +11,7 @@ import exceptions.AuthenticationException;
 public class UserFacade {
 
     //Default EntityManagerFactory
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu");
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpaputest");
     private static final UserFacade instance = new UserFacade();
     
     private UserFacade(){}

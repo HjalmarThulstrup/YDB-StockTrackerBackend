@@ -7,11 +7,12 @@ package usertest;
 
 import entity.Role;
 import entity.User;
-import entity.UserFacade;
+
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import mappers.UserMapper;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -38,12 +39,12 @@ public class UserFacadeTest {
         User testUser = new User("yoat", "1234");
         testUser.addRole(em.find(Role.class, "user"));
         
-        User u = UserFacade.getInstance().persistUser(testUser);
+        User u = UserMapper.getInstance("jpaputest").persistUser(testUser);
         
-        boolean validUsername = UserFacade.getInstance().verifyUsername("yoat");
+        boolean validUsername = UserMapper.getInstance("jpaputest").verifyUsername("yoat");
         assertFalse(validUsername);
         
-        validUsername = UserFacade.getInstance().verifyUsername("validUsername");
+        validUsername = UserMapper.getInstance("jpaputest").verifyUsername("validUsername");
         assertTrue(validUsername);
     }
     
@@ -57,7 +58,7 @@ public class UserFacadeTest {
         User testUser = new User("yeeet", "1234");
         testUser.addRole(em.find(Role.class, "user"));
         
-        User u = UserFacade.getInstance().persistUser(testUser);
+        User u = UserMapper.getInstance("jpaputest").persistUser(testUser);
         
         assertTrue(u.getUserName().equals("yeeet"));
         

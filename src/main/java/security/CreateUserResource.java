@@ -11,7 +11,6 @@ import com.google.gson.JsonParser;
 import com.nimbusds.jose.JOSEException;
 import entity.Role;
 import entity.User;
-import entity.UserFacade;
 import exceptions.UserAlreadyExistException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -23,6 +22,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import mappers.UserMapper;
 
 /**
  * REST Web Service
@@ -49,7 +49,7 @@ public class CreateUserResource {
         String username = json.get("username").getAsString();
         
         //If exist in db, verify username will return false
-        if(!UserFacade.getInstance().verifyUsername(username)) {
+        if(!UserMapper.getInstance("pu").verifyUsername(username)) {
             throw new UserAlreadyExistException("Username: "+ username + " is already in use");
         }
         
@@ -58,7 +58,7 @@ public class CreateUserResource {
         User u = new User(username, pass);
         u.addRole(new Role("user"));
         
-        UserFacade.getInstance().persistUser(u);
+        UserMapper.getInstance("pu").persistUser(u);
         
         JWTCreator jwtc = new JWTCreator();
         

@@ -3,15 +3,12 @@ package entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
 import exceptions.AuthenticationException;
 
 public class UserFacade {
 
     //Default EntityManagerFactory
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu");
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpaputest");
     private static final UserFacade instance = new UserFacade();
     
     private UserFacade(){}

@@ -87,4 +87,12 @@ public class StocksResource
         StockFetcher sf = new StockFetcher();
         return sf.listFetch(type);
     }
+    
+    @GET
+    @Path("news/{symbol}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getNews(@PathParam("symbol") String symbol) throws InterruptedException, ExecutionException {
+        StockFetcher sf = new StockFetcher();
+        return sf.stockNews(symbol);
+    }
 }

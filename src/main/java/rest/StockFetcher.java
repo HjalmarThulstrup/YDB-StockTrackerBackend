@@ -14,13 +14,11 @@ import utils.JsonUtils;
 /**
  * This class is used whenever a stock needs to be fetched from the API.
  */
-public class StockFetcher
-{
+public class StockFetcher {
 
     private final ExecutorService pool;
 
-    public StockFetcher()
-    {
+    public StockFetcher() {
         this.pool = Executors.newCachedThreadPool();
     }
 
@@ -50,8 +48,7 @@ public class StockFetcher
      * @throws InterruptedException
      * @throws ExecutionException
      */
-    private String mergeFutureResults(List<Future> futureList) throws InterruptedException, ExecutionException
-    {
+    private String mergeFutureResults(List<Future> futureList) throws InterruptedException, ExecutionException {
         List<String> futureResults = new ArrayList();
 
         for (Future future : futureList) {
@@ -105,8 +102,7 @@ public class StockFetcher
      * @throws InterruptedException
      * @throws ExecutionException
      */
-    public Response singleFetch(String symbol) throws InterruptedException, ExecutionException
-    {
+    public Response singleFetch(String symbol) throws InterruptedException, ExecutionException {
         return (Response) pool.submit(new IEXSingleStockRequest(symbol)).get();
     }
 
@@ -118,8 +114,12 @@ public class StockFetcher
      * @throws InterruptedException
      * @throws ExecutionException
      */
-    public Response listFetch(String type) throws InterruptedException, ExecutionException
-    {
+    public Response listFetch(String type) throws InterruptedException, ExecutionException {
         return (Response) pool.submit(new IEXStockListRequest(type)).get();
     }
+
+    public Response stockNews(String symbol) throws InterruptedException, ExecutionException {
+        return (Response) pool.submit(new IEXStockNewsRequest(symbol)).get();
+    }
+
 }

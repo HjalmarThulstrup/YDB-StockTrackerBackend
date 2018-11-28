@@ -48,15 +48,17 @@ public class CreateUserResource {
         JsonObject json = new JsonParser().parse(jsonString).getAsJsonObject();
         String username = json.get("username").getAsString();
         
-        //If username is not valid
+        //If exist in db, verify username will return false
         if(!UserFacade.getInstance().verifyUsername(username)) {
             throw new UserAlreadyExistException("Username: "+ username + " is already in use");
         }
         
+        //Passed username test, now get user pass and create a new user to persist
         String pass = json.get("password").getAsString();
-        
         User u = new User(username, pass);
         u.addRole(new Role("user"));
+        
+        UserFacade.getInstance().persistUser(u);
         
         JWTCreator jwtc = new JWTCreator();
         

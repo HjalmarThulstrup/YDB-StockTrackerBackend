@@ -24,8 +24,7 @@ import mappers.UserMapper;
  *
  */
 @Path("user")
-public class UserResource
-{
+public class UserResource {
 
     @Context
     private UriInfo context;
@@ -37,8 +36,7 @@ public class UserResource
     @Produces(MediaType.APPLICATION_JSON)
     @Path("user")
     @RolesAllowed("user")
-    public String getFromUser()
-    {
+    public String getFromUser() {
         String user = securityContext.getUserPrincipal().getName();
         return "\"Hello from USER: " + user + "\"";
     }
@@ -54,16 +52,19 @@ public class UserResource
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{username}/list")
     @RolesAllowed("user")
-    public Response getUserStockList(@PathParam("username") String userName)
-    {
+    public Response getUserStockList(@PathParam("username") String userName) {
         String user = securityContext.getUserPrincipal().getName();
-
+        Gson gson = new Gson();
         if (userName.equals(user)) {
             StockFetcher sf = new StockFetcher();
 
             List<Stocks> userStockList = UserMapper.getInstance("pu").getUserStockList(userName);
 
-            return sf.multiBatchFetch(userStockList);
+            if (userStockList.size() > 0) {
+                return sf.multiBatchFetch(userStockList);
+            } else {
+                return Response.ok(gson.toJson("You are not following any stocks")).build();
+            }
         } else {
             return Response.ok("Not allowed").build();
         }
@@ -81,8 +82,7 @@ public class UserResource
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{username}/add/{stock}")
     @RolesAllowed("user")
-    public Response addStockToList(@PathParam("username") String userName, @PathParam("stock") String symbol)
-    {
+    public Response addStockToList(@PathParam("username") String userName, @PathParam("stock") String symbol) {
         String user = securityContext.getUserPrincipal().getName();
         Gson gson = new Gson();
         if (userName.equals(user)) {
@@ -112,8 +112,7 @@ public class UserResource
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{username}/remove/{stock}")
     @RolesAllowed("user")
-    public Response removeStockFromList(@PathParam("username") String userName, @PathParam("stock") String symbol)
-    {
+    public Response removeStockFromList(@PathParam("username") String userName, @PathParam("stock") String symbol) {
         String user = securityContext.getUserPrincipal().getName();
 
         if (userName.equals(user)) {
@@ -135,8 +134,7 @@ public class UserResource
     @Produces(MediaType.APPLICATION_JSON)
     @Path("admin")
     @RolesAllowed("admin")
-    public String getFromAdmin()
-    {
+    public String getFromAdmin() {
         String user = securityContext.getUserPrincipal().getName();
         return "\"Hello from ADMIN" + user + "\"";
     }

@@ -3,6 +3,7 @@ package rest;
 import com.google.gson.Gson;
 import entity.Stocks;
 import entity.User;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.DELETE;
@@ -62,6 +63,38 @@ public class UserResource {
 
             if (userStockList.size() > 0) {
                 return sf.multiBatchFetch(userStockList);
+            } else {
+                return Response.ok(gson.toJson("You are not following any stocks")).build();
+            }
+        } else {
+            return Response.ok("Not allowed").build();
+        }
+    }
+    
+    /**
+     * Takes in the users name and returns a list of said user's stocks if it is
+     * the user who is logged in.
+     *
+     * @param userName
+     * @return a json array of stocks
+     */
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/{username}/symList")
+    @RolesAllowed("user")
+    public Response getUserSymbolList(@PathParam("username") String userName) {
+        String user = securityContext.getUserPrincipal().getName();
+        Gson gson = new Gson();
+        if (userName.equals(user)) {
+
+            List<Stocks> userStockList = UserMapper.getInstance("pu").getUserStockList(userName);
+            List<String> userSymbolList = new ArrayList<>();
+            for (Stocks stock : userStockList) {
+                userSymbolList.add(stock.getSymbol());
+            }
+
+            if (userStockList.size() > 0) {
+                return Response.ok(gson.toJson(userSymbolList)).build();
             } else {
                 return Response.ok(gson.toJson("You are not following any stocks")).build();
             }

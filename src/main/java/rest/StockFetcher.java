@@ -87,7 +87,9 @@ public class StockFetcher {
                 batchArr[i] = symbolList.remove(0).toString();
             }
 
-            fetchFutures.add(pool.submit(new IEXStockBatchRequest(batchArr)));
+            if (batchSize > 0) {
+                fetchFutures.add(pool.submit(new IEXStockBatchRequest(batchArr)));
+            }
             currentSize = symbolList.size();
         }
         return fetchFutures;

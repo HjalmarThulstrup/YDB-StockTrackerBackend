@@ -1,10 +1,70 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Start Page</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Documentation</title>
+        <style>
+            #content {
+                font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+                border-collapse: collapse;
+                width: 70%;
+                margin: 0 auto;
+            }
+            table {
+                width: 100%;
+
+            }
+
+
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            tr:hover {
+                background-color: #ddd;
+            }
+
+            th {
+                padding-top: 5px;
+                padding-bottom: 5px;
+                text-align: left;
+                background-color: rgb(55, 107, 122);
+                color: white;
+            }
+        </style>
+
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <div id="content">
+            <h3>Stocks endpoints</h3>
+            <table>
+                <tr><th>GET</th><th>Stock</th></tr>
+                <tr><td>/api/stocks/single/{symbol}</td><td>Returns a single stock with all its information</td></tr>
+                <tr><td>/api/stocks/list/{type}</td><td>Returns a list of stocks with todays biggest gainers or losers</td></tr>
+                <tr><td>/api/stocks/news/{symbol}</td><td>Returns a list of news for single stock</td></tr>
+            </table>
+
+
+
+            <h3>User endpoints</h3>
+            <table>
+                <tr><th>GET</th><th>User list</th></tr>
+                <tr><td>Protected endpoints</td></tr>
+                <tr><td>/api/user/{username}/list</td><td>Returns users list of stocks</td></tr>
+                <tr><td>/api/user/{username}/symList</td><td>Return users list of stocks as symbols</td></tr>
+                <tr><th>POST</th><th>User</th></tr>
+                <tr><td>/api/login</td><td>Returns a json object with a username and a json web token if username and password is correct</td></tr>
+                <tr><td>Protected endpoints</td></tr>
+                <tr><td>/api/createUser</td><td>Adds a user to the database</td></tr>
+                <tr><td>/api/user/{username}/add/{stock}</td><td>Adds a stock to the users favorites in the database</td></tr>
+                <tr><th>DELETE</th><th>Stock from user list</th></tr>
+                <tr><td>/api/user/{username}/remove/{stock}</td><td>Removes stocks from users favorites in the database</td></tr>
+
+            </table>
+
+        </div>
     </body>
+
 </html>
+
